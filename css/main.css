@@ -1165,7 +1165,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #edff90;
+  background: #7cfffb;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2513,7 +2513,6 @@ hr {
   font-size: 1.21em;
   line-height: 1.2;
 }
-.katex .mord,
-.katex .mathnormal {
+.katex .mord.mathit {
   font-style: italic !important;
 }
