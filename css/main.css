@@ -1165,7 +1165,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #c6f1ff;
+  background: #1121af;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2507,4 +2507,13 @@ hr {
 }
 .sub-menu .menu-item {
   display: inline-block;
+}
+.katex {
+  font-family: KaTeX_Main, Times New Roman, serif;
+  font-size: 1.21em;
+  line-height: 1.2;
+}
+.katex .mord,
+.katex .mathnormal {
+  font-style: italic !important;
 }
