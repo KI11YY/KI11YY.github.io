@@ -9,8 +9,39 @@
     <atom:link href="http://example.com/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>All understanding begins with our not accepting the world as it appears</description>
-    <pubDate>Fri, 08 Nov 2024 14:26:14 GMT</pubDate>
+    <pubDate>Sat, 09 Nov 2024 07:31:02 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>考后感想</title>
+      <link>http://example.com/2024/11/09/%E8%80%83%E5%90%8E%E6%84%9F%E6%83%B3/</link>
+      <guid>http://example.com/2024/11/09/%E8%80%83%E5%90%8E%E6%84%9F%E6%83%B3/</guid>
+      <pubDate>Sat, 09 Nov 2024 07:20:01 GMT</pubDate>
+      
+        
+        
+      <description>世界上听起来最难受的一句话就是：
+&lt;center&gt;
+&lt;font size=&quot;10&quot;&gt;我原本可以做到的......&lt;/font&gt;
+&lt;/center&gt;
+&lt;hr&gt;
+&lt;p&gt;最简单的解析几何把题目看错了，第二题求积分，拆 &lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[世界上听起来最难受的一句话就是：<center><font size="10">我原本可以做到的......</font></center><hr><p>最简单的解析几何把题目看错了，第二题求积分，拆 <span class="math inline">\(\dfrac{1}{(1+sx^{2})(1+x^{2})}\)</span>都拆错了，哎......，偏偏以这种最遗憾的方式结束。</p><p>可是没人会为你哀悼，别忘了作业还没写完......</p>]]></content:encoded>
+      
+      
+      <category domain="http://example.com/categories/%E6%9D%82%E8%B0%88/">杂谈</category>
+      
+      
+      <category domain="http://example.com/tags/%E7%AC%AC%E5%8D%81%E5%85%AD%E5%B1%8A%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%95%B0%E5%AD%A6%E7%AB%9E%E8%B5%9B/">第十六届全国大学生数学竞赛</category>
+      
+      
+      <comments>http://example.com/2024/11/09/%E8%80%83%E5%90%8E%E6%84%9F%E6%83%B3/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>第16届全国大学生数学竞赛考前复习</title>
@@ -203,9 +234,7 @@
       <category domain="http://example.com/categories/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%95%B0%E5%AD%A6%E7%AB%9E%E8%B5%9B/">大学生数学竞赛</category>
       
       
-      <category domain="http://example.com/tags/%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%95%B0%E5%AD%A6%E7%AB%9E%E8%B5%9B/">全国大学生数学竞赛</category>
-      
-      <category domain="http://example.com/tags/%E5%88%9D%E8%B5%9B%E8%AF%95%E9%A2%98/">初赛试题</category>
+      <category domain="http://example.com/tags/%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%95%B0%E5%AD%A6%E7%AB%9E%E8%B5%9B%E5%88%9D%E8%B5%9B/">全国大学生数学竞赛初赛</category>
       
       
       <comments>http://example.com/2024/10/29/%E6%95%B0%E5%AD%A6%E7%B1%BB-2020-A%E5%8D%B7-T6/#disqus_thread</comments>
