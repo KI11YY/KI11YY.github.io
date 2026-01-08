@@ -1165,7 +1165,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #bf85d1;
+  background: #6ec320;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2560,4 +2560,21 @@ hr {
 }
 .katex .mord.mathit {
   font-style: italic !important;
+}
+:root {
+  --text-color: #000;
+  --blockquote-color: #000;
+  --link-color: #000;
+  --link-hover-color: #000;
+  --brand-color: #000;
+  --brand-hover-color: #000;
+}
+.posts-expand .post-meta {
+  color: #000 !important;
+}
+.posts-expand .post-meta a {
+  color: #000 !important;
+}
+.posts-expand .post-meta a:hover {
+  color: #000 !important;
 }
