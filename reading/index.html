@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="拾忆碎笔的阅读卡片：在书名与章节之间，重逢那些值得留下的句子。">
+  <title>阅读卡片 · 拾忆碎笔</title>
+  <style>
+    :root{--paper:#f8f6ef;--card:#fffefa;--ink:#353f35;--green:#4b6650;--muted:#7b8173;--line:#dfdfd0;--gold:#a28a57;--serif:'Songti SC','Noto Serif CJK SC','SimSun',serif;--art:'STKaiti','KaiTi','Kaiti SC',var(--serif)}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.65 'Microsoft YaHei','PingFang SC',sans-serif}button,input,select{font:inherit}button,a,input,select{touch-action:manipulation}button{cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--green);outline-offset:4px}button:disabled{opacity:.45;cursor:default}[hidden]{display:none!important}
+    .wrap{max-width:1160px;margin:0 auto;padding:0 32px}.top{height:88px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:18px;letter-spacing:3px}.brand-mark{display:grid;place-items:center;width:34px;height:34px;border:1px solid #82917c;border-radius:3px;color:var(--green);font-family:var(--art);font-size:23px;transform:rotate(-4deg)}.top-links{display:flex;align-items:center;gap:25px;color:var(--muted);font-size:12px}.active-link{color:var(--green);border-bottom:1px solid var(--green);padding:9px 0}.return:hover{color:var(--green)}
+    .hero{display:flex;align-items:center;justify-content:space-between;padding:53px 0 43px;gap:30px}.eyebrow{font-size:10px;letter-spacing:3px;color:var(--green);margin:0 0 18px}.hero h1{font-family:var(--art);font-size:49px;letter-spacing:6px;line-height:1.3;font-weight:normal;margin:0 0 17px}.hero-desc{color:var(--muted);font-family:var(--serif);font-size:16px;letter-spacing:1px;margin:0}.hero-desc span{display:block}.stats{display:flex;align-items:center;gap:24px;margin-top:25px;font-size:12px;color:var(--muted)}.stats strong{font:22px var(--serif);color:var(--green);margin-right:6px}.stats .divider{width:1px;height:18px;background:var(--line)}
+    .hero-art{width:220px;height:187px;position:relative;flex-shrink:0;border-left:1px solid var(--line);display:flex;align-items:center;justify-content:center;gap:25px;color:var(--green)}.hero-art .big{font:104px var(--art);opacity:.11;position:absolute;left:42px;top:15px}.hero-art .vertical{writing-mode:vertical-rl;font-family:var(--art);font-size:17px;letter-spacing:5px;position:relative}.seal{position:absolute;bottom:5px;right:50px;border:1px solid #aa8569;border-radius:2px;color:#aa8569;padding:3px 5px;font-family:var(--art);font-size:11px;letter-spacing:2px;writing-mode:vertical-rl}
+    .manager{padding:22px 24px;margin:0 0 28px;background:#eef2e7;border:1px solid #d3ddc9;border-radius:14px}.manager h2{font-size:16px;margin:0 0 7px}.manager p{color:#65735e;font-size:12px;margin:0 0 16px}.manager-actions{display:flex;gap:9px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:var(--card);border-radius:7px;padding:9px 14px;line-height:1.4;color:var(--green);display:inline-flex;align-items:center;justify-content:center;gap:7px}.btn:hover{border-color:#9bac91;background:#f4f6ef}.btn.primary{background:var(--green);color:white;border-color:var(--green)}.btn.primary:hover{background:#3b5440}.manager-foot{margin-top:12px;color:#687561;font-size:11px}.demo{border:1px dashed #c6b58c;color:#8a7447;border-radius:6px;padding:10px 15px;font-size:12px;margin-bottom:25px;background:#faf5e8}
+    .library{display:grid;grid-template-columns:205px minmax(0,1fr);gap:35px}.shelf{padding-top:5px}.shelf-heading{display:flex;gap:10px;align-items:center;font-size:11px;letter-spacing:2px;color:var(--muted);margin-bottom:15px}.shelf-heading:after{content:'';height:1px;background:var(--line);flex:1}.book-list{display:flex;flex-direction:column;gap:6px}.book-button{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 12px;text-align:left;width:100%;border:1px solid transparent;border-radius:6px;background:transparent;color:#70776b;font-size:13px}.book-button:hover{background:#f0f1e8}.book-button.selected{border-color:#d3dbc8;background:#eaf0e3;color:#3f5f43}.book-label{min-width:0}.book-label strong{display:block;font-family:var(--serif);font-size:14px;font-weight:normal;overflow-wrap:anywhere}.book-label small{font-size:10px;opacity:.75}.book-count{font:13px Georgia,serif;flex-shrink:0}.shelf-note{font-family:var(--serif);color:#9a9c8d;font-size:12px;line-height:2.2;border-top:1px solid var(--line);margin:27px 12px 0;padding-top:20px;letter-spacing:1px}
+    .content-head{display:flex;gap:15px;justify-content:space-between;align-items:center;margin-bottom:17px;flex-wrap:wrap}.content-title h2{font-family:var(--serif);font-size:22px;font-weight:normal;letter-spacing:2px;margin:0}.content-title p{color:var(--muted);font-size:11px;margin:5px 0 0}.search-box{display:flex;align-items:center;gap:9px;min-width:200px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:0 12px}.search-box svg{width:15px;height:15px;stroke:var(--muted);flex-shrink:0}.search-box input{border:0;background:transparent;padding:10px 0;min-width:0;width:220px;color:var(--ink);outline-offset:1px}.search-box input::placeholder{color:#9a9d91;font-size:12px}.filters{display:flex;align-items:center;gap:10px;margin-bottom:23px;flex-wrap:wrap}.filters select{background:transparent;border:1px solid var(--line);border-radius:6px;padding:7px 28px 7px 10px;color:#6f7868;font-size:11px;max-width:100%}.result-count{font-size:11px;color:var(--muted);margin-left:auto}.manage-selection{display:flex;gap:9px;align-items:center;margin-bottom:16px;font-size:12px;color:var(--green)}.link-button{border:0;border-bottom:1px solid #b6c4ad;padding:0 0 1px;background:transparent;color:var(--green);font-size:12px}
+    .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}.quote-card{position:relative;background:var(--card);border:1px solid #dcded0;border-radius:11px;padding:24px 25px 18px;box-shadow:0 3px 12px rgba(60,70,42,.025);scroll-margin-top:24px;overflow-wrap:anywhere;transition:border-color .2s,box-shadow .2s}.quote-card:hover{border-color:#b4c1a7;box-shadow:0 5px 19px rgba(60,70,42,.06)}.quote-card:target{border-color:var(--gold);box-shadow:0 0 0 3px #e9dfc5}.quote-card.unselected{opacity:.6}.card-top{display:flex;gap:10px;align-items:baseline;margin-bottom:14px;color:#89917e}.card-index{font:18px Georgia,serif;color:#94a086;font-style:italic}.chapter{font-family:var(--serif);font-size:11px;line-height:1.8}.quote-card blockquote{font-family:var(--serif);font-size:19px;line-height:2.1;letter-spacing:.5px;margin:0 0 23px;white-space:pre-wrap;color:#414a3b}.attribution{font-family:var(--serif);font-size:12px;line-height:1.8;display:flex;gap:6px;align-items:center;flex-wrap:wrap;color:#808675;padding-top:14px;border-top:1px solid #e9e9df}.attribution .dot{font-size:10px;color:#b4baa7}.card-bottom{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px;font-size:10px;color:#a0a492}.source{font-size:10px;color:#929b88}.source.hot{color:#a58557}.card-controls{display:flex;gap:15px}.icon-button{border:0;background:transparent;padding:2px 0;color:#a0a492;font-size:10px}.icon-button:hover{color:var(--green)}.select-card{display:flex;gap:6px;align-items:center;margin:0 0 14px;font-size:11px;color:var(--green)}.select-card input{accent-color:var(--green);width:15px;height:15px;margin:0}.note{font-family:var(--serif);font-size:12px;color:#839077;padding:11px 0 0;border-top:1px dotted var(--line);margin-top:14px;white-space:pre-wrap}.empty{grid-column:1/-1;text-align:center;border:1px dashed var(--line);border-radius:10px;padding:65px 20px;color:var(--muted)}.empty strong{font-family:var(--art);font-size:25px;font-weight:normal;display:block;color:var(--green);margin-bottom:8px}.empty p{margin:0;font-size:12px}.load-more{margin-top:25px;text-align:center}.footer{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:55px;padding:23px 0 28px;color:#949988;font-size:11px}.footer span:first-child{font-family:var(--serif);letter-spacing:1px}.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);max-width:calc(100vw - 32px);padding:11px 20px;border-radius:8px;background:#405440;color:white;font-size:12px;box-shadow:0 3px 20px #0002;z-index:10}.skip{position:absolute;top:-80px;left:20px;background:var(--card);padding:10px;z-index:20}.skip:focus{top:10px}
+    @media(max-width:900px){.wrap{padding:0 24px}.library{grid-template-columns:175px minmax(0,1fr);gap:23px}.cards{gap:14px}.quote-card{padding:20px}.quote-card blockquote{font-size:17px}.hero h1{font-size:43px}.hero-art{width:175px}.search-box input{width:170px}}
+    @media(max-width:650px){.wrap{padding:0 20px}.top{height:72px}.brand{font-size:16px;letter-spacing:2px}.top-links{gap:16px}.active-link{display:none}.hero{padding:34px 0 31px;gap:5px}.hero h1{font-size:37px;letter-spacing:3px}.eyebrow{letter-spacing:2px;margin-bottom:14px}.hero-desc{font-size:13px;letter-spacing:0}.hero-art{width:60px;height:130px;border-left:0}.hero-art .big{display:none}.hero-art .vertical{font-size:12px;letter-spacing:4px}.hero-art .vertical:first-of-type{display:none}.seal{display:none}.stats{gap:17px;margin-top:19px}.stats strong{font-size:20px}.library{display:block}.shelf{margin-bottom:25px}.shelf-heading{margin-bottom:8px}.book-list{flex-direction:row;overflow-x:auto;padding-bottom:6px;gap:7px}.book-button{width:auto;min-width:125px;flex-shrink:0;padding:9px 10px;border-color:var(--line)}.book-label strong{font-size:12px}.shelf-note{display:none}.content-head{display:block}.content-title h2{font-size:20px}.search-box{margin-top:15px;width:100%}.search-box input{width:100%}.filters{gap:7px;margin-bottom:18px}.result-count{margin-left:auto}.cards{grid-template-columns:1fr;gap:15px}.quote-card{padding:23px}.quote-card blockquote{font-size:18px}.manager{padding:18px;margin-bottom:24px}.manager-actions .btn{flex:1;white-space:nowrap;font-size:12px}.footer{margin-top:35px;gap:6px}.footer span{width:100%}}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#library">跳到书摘</a>
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="https://ki11yy.github.io/"><span class="brand-mark" aria-hidden="true">忆</span>拾忆碎笔</a>
+      <nav class="top-links" aria-label="网站导航"><span class="active-link">阅读卡片</span><a class="return" href="https://ki11yy.github.io/">返回博客 ↗</a></nav>
+    </header>
+    <section class="hero" aria-labelledby="page-title">
+      <div><p class="eyebrow">READING NOTES / 阅读的留白</p><h1 id="page-title">阅读卡片</h1><p class="hero-desc">把读过的书，留在日常里。<span>收集片刻共鸣，也留一扇重读的窗。</span></p><div class="stats"><span><strong id="book-total">0</strong>本书</span><span class="divider"></span><span><strong id="card-total">0</strong>段书摘</span></div></div>
+      <div class="hero-art" aria-hidden="true"><span class="big">摘</span><span class="vertical">于字里行间</span><span class="vertical">拾一页清欢</span><span class="seal">拾忆</span></div>
+    </section>
+    <main class="library" id="library">
+      <aside class="shelf" aria-label="按书籍筛选"><div class="shelf-heading">我的书架</div><div class="book-list" id="book-list"></div><p class="shelf-note">有些句子，<br>读过许久，<br>仍在心里轻轻回响。</p></aside>
+      <section aria-labelledby="section-title">
+        <div class="content-head"><div class="content-title"><h2 id="section-title">书页里的回声</h2><p id="section-subtitle">每一段，都是阅读留下的痕迹</p></div><label class="search-box"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="search" type="search" placeholder="搜索句子、书名或作者" aria-label="搜索句子、书名或作者"></label></div>
+        <div class="filters"><select id="chapter-filter" aria-label="按章节筛选"><option value="">全部章节</option></select><select id="source-filter" aria-label="按划线来源筛选"><option value="">全部来源</option><option value="personal">我的划线</option><option value="popular">热门划线</option></select><span class="result-count" id="result-count" aria-live="polite"></span></div>
+        <div class="cards" id="cards"></div><div class="load-more"><button class="btn" id="load-more" hidden>继续浏览</button></div>
+      </section>
+    </main>
+    <footer class="footer"><span>拾忆碎笔 · 于书页间，留一点时光</span><span id="updated">由我挑选，与你分享</span></footer>
+  </div>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <noscript><p style="text-align:center;padding:30px">请启用 JavaScript，以浏览和筛选阅读卡片。</p></noscript>
+  <script type="application/json" id="reading-data">{"format": "reading-cards", "version": 1, "mode": "public", "updatedAt": "", "cards": []}</script>
+  <script>
+    'use strict';
+    (()=>{
+      const $=id=>document.getElementById(id);
+      const embedded=JSON.parse($('reading-data').textContent);
+      const manage=embedded.mode==='manage';
+      // 在任何 UI 改写之前保留干净模板，导出不包含管理界面的运行状态。
+      const template='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
+      const storageKey='shiyi-reading-cards-v1';
+      let cards=normalize(embedded).cards, selected=new Set(cards.map(c=>c.id));
+      let book='',chapter='',query='',source='',limit=24,toastTimer;
+      function text(value,max=200000){return typeof value==='string'?value.slice(0,max):'';}
+      function normalize(data){
+        if(!data||data.format!=='reading-cards'||data.version!==1||!Array.isArray(data.cards))throw new Error('请导入“导出网站选句”生成的 JSON，或本管理页的收藏备份。');
+        if(data.cards.length>20000)throw new Error('单个收藏文件最多支持 20000 张卡片。');
+        const clean=[],seen=new Set();
+        for(const c of data.cards){
+          if(!c||typeof c!=='object'||!text(c.text).trim()||!text(c.book).trim()||!text(c.id)||!['personal','popular'].includes(c.source))throw new Error('选句文件包含不完整的卡片，请重新导出。');
+          const item={id:text(c.id,128),book:text(c.book,500),author:text(c.author,500),chapter:text(c.chapter,2000)||'章节未识别',text:text(c.text),source:c.source,collection:text(c.collection,1000),note:text(c.note,10000)};
+          if(!seen.has(item.id)){clean.push(item);seen.add(item.id);}
+        }
+        return {format:'reading-cards',version:1,cards:clean};
+      }
+      function message(value){$('toast').textContent=value;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,4500);}
+      function node(tag,cls,value){const n=document.createElement(tag);if(cls)n.className=cls;if(value!==undefined)n.textContent=value;return n;}
+      function bookKey(c){return JSON.stringify([c.book,c.author]);}
+      function persist(){if(!manage)return;try{localStorage.setItem(storageKey,JSON.stringify({format:'reading-cards',version:1,cards,selected:[...selected]}));}catch{message('浏览器未能记住收藏，请点击“备份收藏”保存到电脑。');}}
+      function status(){if(!manage)return;const count=cards.filter(c=>selected.has(c.id)).length;$('manager-status').textContent=`收藏 ${cards.length} 张，准备发布 ${count} 张。生成页面后，将 index.html 放入博客 source/reading 文件夹，再按原来的流程发布。`;$('export-button').disabled=!count;$('backup-button').disabled=!cards.length;}
+      function renderShelf(){
+        const books=new Map();for(const c of cards){const key=bookKey(c);if(!books.has(key))books.set(key,{title:c.book,author:c.author,count:0});books.get(key).count++;}
+        $('book-total').textContent=books.size;$('card-total').textContent=cards.length;$('book-list').replaceChildren();
+        const add=(key,title,author,count)=>{const b=node('button','book-button'+(book===key?' selected':''));b.type='button';b.setAttribute('aria-pressed',String(book===key));const label=node('span','book-label');label.append(node('strong','',title));if(author)label.append(node('small','',author));b.append(label,node('span','book-count',count));b.addEventListener('click',()=>{book=key;chapter='';limit=24;renderShelf();renderChapters();render();});$('book-list').append(b);};
+        add('','全部书摘','',cards.length);for(const [key,b]of books)add(key,b.title,b.author,b.count);
+        if(book&&!books.has(book)){book='';chapter='';renderShelf();}
+      }
+      function renderChapters(){const options=[...new Set(cards.filter(c=>!book||bookKey(c)===book).map(c=>c.chapter))];$('chapter-filter').replaceChildren(new Option('全部章节',''));for(const label of options)$('chapter-filter').add(new Option(label,label));if(!options.includes(chapter))chapter='';$('chapter-filter').value=chapter;}
+      function filtered(){const q=query.trim().toLocaleLowerCase();return cards.filter(c=>(!book||bookKey(c)===book)&&(!chapter||c.chapter===chapter)&&(!source||c.source===source)&&(!q||[c.text,c.book,c.author,c.chapter,c.collection,c.note].some(v=>v.toLocaleLowerCase().includes(q))));}
+      async function copy(value){try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(value);}else{const area=node('textarea');area.value=value;area.style.position='fixed';area.style.opacity='0';document.body.append(area);area.select();const ok=document.execCommand('copy');area.remove();if(!ok)throw new Error();}message('已复制');}catch{message('复制未成功，可以选中卡片文字后按 Ctrl+C。');}}
+      function cardElement(c,index){
+        const article=node('article','quote-card'+(manage&&!selected.has(c.id)?' unselected':''));article.id='card-'+encodeURIComponent(c.id);
+        if(manage){const label=node('label','select-card');const input=document.createElement('input');input.type='checkbox';input.checked=selected.has(c.id);input.setAttribute('aria-label','发布选句：'+c.text.slice(0,25));input.addEventListener('change',()=>{if(input.checked)selected.add(c.id);else selected.delete(c.id);article.classList.toggle('unselected',!input.checked);persist();status();});label.append(input,document.createTextNode('加入公开页面'));article.append(label);}
+        const top=node('div','card-top');top.append(node('span','card-index',String(index+1).padStart(2,'0')),node('span','chapter',c.chapter));article.append(top,node('blockquote','',c.text));
+        const credit=node('div','attribution');credit.append(node('span','',c.author||'作者未标注'),node('span','dot','·'),node('span','',`《${c.book}》`));article.append(credit);
+        if(c.note){const details=node('details','note');details.append(node('summary','','我的阅读感想'),node('div','',c.note));article.append(details);}
+        const bottom=node('div','card-bottom');bottom.append(node('span','source'+(c.source==='popular'?' hot':''),c.source==='personal'?'我的划线':'热门划线 · 其他读者'));
+        const controls=node('div','card-controls');const cb=node('button','icon-button','复制');cb.type='button';cb.setAttribute('aria-label','复制这段书摘');cb.addEventListener('click',()=>copy(`${c.text}\n— ${c.author}《${c.book}》\n${c.chapter}`));controls.append(cb);
+        if(manage){const remove=node('button','icon-button','移除');remove.type='button';remove.setAttribute('aria-label','移除这张卡片');remove.addEventListener('click',()=>{cards=cards.filter(x=>x.id!==c.id);selected.delete(c.id);persist();renderAll();message('已从本地收藏移除。已发布的网站需重新生成、发布后更新。');});controls.append(remove);}else{const link=node('a','icon-button','定位');link.href='#'+article.id;link.setAttribute('aria-label','定位这张卡片');controls.append(link);}
+        bottom.append(controls);article.append(bottom);return article;
+      }
+      function render(){
+        const results=filtered();$('cards').replaceChildren();const current=cards.find(c=>bookKey(c)===book);$('section-title').textContent=current?current.book:'书页里的回声';$('section-subtitle').textContent=current?`${current.author||'作者未标注'} · 在字句间重新相遇`:'每一段，都是阅读留下的痕迹';$('result-count').textContent=`${results.length} 段书摘`;
+        if(!results.length){const empty=node('div','empty');empty.append(node('strong','',cards.length?'暂未找到这一句':'书架静候下一次阅读'),node('p','',cards.length?'换一个关键词，或试试其他书籍与章节。':manage?'从阅迹导入挑选好的网站选句，开始收集。':'这里将陆续分享我挑选的书摘。'));$('cards').append(empty);}else{for(let i=0;i<Math.min(limit,results.length);i++)$('cards').append(cardElement(results[i],i));}
+        $('load-more').hidden=results.length<=limit;status();
+      }
+      function renderAll(){renderShelf();renderChapters();render();}
+      function download(content,name,type){const blob=new Blob([content],{type});const url=URL.createObjectURL(blob);const a=node('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+      function safeJSON(data){return JSON.stringify(data).replace(/</g,'\\u003c').replace(/>/g,'\\u003e').replace(/&/g,'\\u0026').replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029');}
+      function publicHTML(chosen){
+        const doc=new DOMParser().parseFromString(template,'text/html');
+        for(const id of ['manager','manage-selection','demo-notice'])doc.getElementById(id).remove();
+        doc.getElementById('reading-data').textContent=safeJSON({format:'reading-cards',version:1,mode:'public',updatedAt:new Date().toISOString(),cards:chosen});
+        return '<!DOCTYPE html>\n'+doc.documentElement.outerHTML;
+      }
+      $('search').addEventListener('input',e=>{query=e.target.value;limit=24;render();});$('chapter-filter').addEventListener('change',e=>{chapter=e.target.value;limit=24;render();});$('source-filter').addEventListener('change',e=>{source=e.target.value;limit=24;render();});$('load-more').addEventListener('click',()=>{limit+=24;render();});
+      if(manage){
+        $('manager').hidden=false;$('manage-selection').hidden=false;
+        try{const stored=JSON.parse(localStorage.getItem(storageKey));if(stored){cards=normalize(stored).cards;selected=new Set(Array.isArray(stored.selected)?stored.selected:cards.map(c=>c.id));}}catch{message('未能读取上次收藏，请导入备份恢复。');}
+        $('import-button').addEventListener('click',()=>$('import-file').click());
+        $('import-file').addEventListener('change',async e=>{const files=[...e.target.files];let incoming=[];try{for(const file of files){if(file.size>20000000)throw new Error('选句文件超过 20 MB，请分批导入。');const data=JSON.parse(await file.text());const checked=Array.isArray(data.selected)?new Set(data.selected):null;incoming.push(...normalize(data).cards.map(card=>({card,checked:!checked||checked.has(card.id)})));}const merged=new Map(cards.map(c=>[c.id,c]));const nextSelected=new Set(selected);let added=0;for(const item of incoming){const c=item.card;if(!merged.has(c.id)){merged.set(c.id,c);if(item.checked)nextSelected.add(c.id);added++;}else if(c.source==='personal'||merged.get(c.id).source!=='personal'){merged.set(c.id,c);}}if(merged.size>20000)throw new Error('收藏超过 20000 张，请分成多个栏目。');cards=[...merged.values()];selected=nextSelected;persist();renderAll();message(`导入完成：新增 ${added} 张，相同卡片自动合并。`);}catch(err){message(err instanceof SyntaxError?'文件不是有效 JSON，请重新导出网站选句。':err.message);}finally{e.target.value='';}});
+        $('select-visible').addEventListener('click',()=>{for(const c of filtered())selected.add(c.id);persist();render();});$('deselect-visible').addEventListener('click',()=>{for(const c of filtered())selected.delete(c.id);persist();render();});
+        $('backup-button').addEventListener('click',()=>download(JSON.stringify({format:'reading-cards',version:1,updatedAt:new Date().toISOString(),cards,selected:[...selected]},null,2),'阅读卡片收藏备份.json','application/json;charset=utf-8'));
+        $('export-button').addEventListener('click',()=>{const chosen=cards.filter(c=>selected.has(c.id));if(!chosen.length){message('请先勾选准备公开的卡片。');return;}download(publicHTML(chosen),'index.html','text/html;charset=utf-8');message(`已生成 ${chosen.length} 张公开卡片。下载完成后可双击 index.html 检查；发布到博客后访客才能看到。`);});
+      }else if(embedded.updatedAt){const date=new Date(embedded.updatedAt);if(!Number.isNaN(date.getTime()))$('updated').textContent='最近整理 · '+date.toLocaleDateString('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit'});}
+      if(embedded.mode==='demo')$('demo-notice').hidden=false;
+      renderAll();
+      if(location.hash.startsWith('#card-')){const id=location.hash.slice(6);const i=cards.findIndex(c=>encodeURIComponent(c.id)===id);if(i>=0){limit=Math.max(limit,i+1);render();requestAnimationFrame(()=>document.getElementById('card-'+id)?.scrollIntoView({block:'center'}));}}
+    })();
+  </script>
+</body>
+</html>
