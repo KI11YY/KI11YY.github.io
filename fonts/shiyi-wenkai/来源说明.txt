@@ -1,0 +1,4 @@
+本网页字体由霞鹜文楷轻便版 v1.522 转换、分字集生成。
+来源：https://github.com/lxgw/LxgwWenKai-Lite/releases/tag/v1.522
+遵循随附 SIL Open Font License 1.1；网页衍生字体名称为 Shiyi WenKai。
+常用字优先加载，其余字按 Unicode 范围按需加载。

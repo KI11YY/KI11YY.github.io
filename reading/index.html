@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="拾忆碎笔的阅读卡片：在书名与章节之间，重逢那些值得留下的句子。">
   <title>阅读卡片 · 拾忆碎笔</title>
+  <link rel="stylesheet" href="/fonts/shiyi-wenkai/font.css">
+  <meta name="theme-color" content="#dceef9">
   <style>
     :root{--paper:#f8f6ef;--card:#fffefa;--ink:#353f35;--green:#4b6650;--muted:#7b8173;--line:#dfdfd0;--gold:#a28a57;--serif:'Songti SC','Noto Serif CJK SC','SimSun',serif;--art:'STKaiti','KaiTi','Kaiti SC',var(--serif)}
     *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.65 'Microsoft YaHei','PingFang SC',sans-serif}button,input,select{font:inherit}button,a,input,select{touch-action:manipulation}button{cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--green);outline-offset:4px}button:disabled{opacity:.45;cursor:default}[hidden]{display:none!important}
@@ -18,6 +20,23 @@
     @media(max-width:900px){.wrap{padding:0 24px}.library{grid-template-columns:175px minmax(0,1fr);gap:23px}.cards{padding:0 23px}.quote-card{padding:21px 0 18px}.quote-card blockquote{font-size:18px}.hero h1{font-size:43px}.hero-art{width:175px}.search-box input{width:170px}}
     @media(max-width:650px){.wrap{padding:0 20px}.top{height:72px}.brand{font-size:16px;letter-spacing:2px}.top-links{gap:16px}.active-link{display:none}.hero{padding:34px 0 31px;gap:5px}.hero h1{font-size:37px;letter-spacing:3px}.eyebrow{letter-spacing:2px;margin-bottom:14px}.hero-desc{font-size:13px;letter-spacing:0}.hero-art{width:60px;height:130px;border-left:0}.hero-art .big{display:none}.hero-art .vertical{font-size:12px;letter-spacing:4px}.hero-art .vertical:first-of-type{display:none}.seal{display:none}.stats{gap:17px;margin-top:19px}.stats strong{font-size:20px}.library{display:block}.shelf{margin-bottom:25px}.shelf-heading{margin-bottom:8px}.book-list{flex-direction:row;overflow-x:auto;padding-bottom:6px;gap:7px}.book-button{width:auto;min-width:125px;flex-shrink:0;padding:9px 10px;border-color:var(--line)}.book-label strong{font-size:12px}.shelf-note{display:none}.content-head{display:block}.content-title h2{font-size:20px}.search-box{margin-top:15px;width:100%}.search-box input{width:100%}.filters{gap:7px;margin-bottom:18px}.result-count{margin-left:auto}.cards{padding:0 19px;border-radius:10px}.quote-card{padding:19px 0 17px}.quote-card blockquote{font-size:18px}.manager{padding:18px;margin-bottom:24px}.manager-actions .btn{flex:1;white-space:nowrap;font-size:12px}.footer{margin-top:35px;gap:6px}.footer span{width:100%}}
     @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* Shared sky-blue palette and literary type with the main blog. */
+:root{--paper:#dceef9;--card:#f8fcff;--ink:#344f63;--green:#3c6680;--muted:#637f92;--line:#bcd6e7;--gold:#709ab5;--serif:'Shiyi WenKai','STKaiti','KaiTi','Songti SC','SimSun',serif;--art:var(--serif)}
+body{background:radial-gradient(ellipse at 20% 0,#eef9ff 0,transparent 55%),var(--paper);font-family:var(--serif);font-size:17px}
+::selection{background:#bfdff3;color:#294c66}
+.brand{font-size:24px;letter-spacing:3px;color:#3c6680}.brand-mark{border-color:#779eb7;font-size:24px}
+.top-links{gap:4px;font-size:15px;color:#526f84}.top-links a,.top-links .active-link{padding:5px 10px;border:0;border-radius:6px;white-space:nowrap}.top-links .active-link,.top-links a:hover{background:#c9e3f3;color:#2f5873}
+.hero h1{color:#365c77}.hero-desc{color:#647f92}.eyebrow{color:#60839b;font-family:Georgia,serif}.hero-art{color:#7898ad}.seal{border-color:#83a8bf;color:#7398b1}
+.manager{background:#e8f4fc;border-color:#bad5e7}.manager p,.manager-foot{color:#5c7c93}.btn:hover{border-color:#8eafc5;background:#edf6fc}.btn.primary:hover{background:#2c5673}.demo{border-color:#adc9dd;color:#607e94;background:#eff7fc}
+.book-button{color:#607c93}.book-button:hover{background:#edf7fd}.book-button.selected{border-color:#b8d3e5;background:#deeff9;color:#345e7a}.shelf-note{color:#668399}
+.search-box input::placeholder{color:#6f8a9e}.filters select{color:#54748c}.content-title h2{color:#365d77}.link-button{border-color:#8eafc5}
+.cards{border-color:#c0d8e8;box-shadow:0 5px 20px rgba(56,94,121,.035)}.quote-card{border-bottom-color:#d2e3ef}.quote-card:hover{background:#edf7fc}.quote-card:target{background:#e7f3fb;box-shadow:inset 3px 0 0 var(--gold)}
+.card-top,.card-index{color:#6c90aa}.chapter{font-size:12px}.quote-card blockquote{color:#344f63;letter-spacing:.3px}.attribution{color:#607b8e}.attribution .dot{color:#8cabbf}.card-bottom,.source,.icon-button{color:#658499;font-size:12px}.source.hot{color:#7586a4}.note{color:#54768e}
+.footer{color:#668296;font-size:13px}.toast{background:#446e8b}
+@media(max-width:900px){.top{gap:12px}.top-links a,.top-links .active-link{padding:5px 7px}.brand{font-size:22px}.quote-card blockquote{font-size:18px}}
+@media(max-width:650px){.top{height:auto;min-height:88px;display:block;padding:15px 0 9px}.brand{font-size:23px}.top-links{display:flex;gap:7px;overflow-x:auto;padding:14px 0 5px;justify-content:flex-start}.top-links a,.top-links .active-link{display:block;font-size:14px;padding:4px 6px}.hero{padding:30px 0}.hero h1{font-size:35px}.hero-desc{font-size:15px}.chapter{font-size:12px}.card-bottom,.source,.icon-button{font-size:12px}.footer{font-size:12px}}
+
   </style>
 </head>
 <body>
@@ -25,7 +44,7 @@
   <div class="wrap">
     <header class="top">
       <a class="brand" href="https://ki11yy.github.io/"><span class="brand-mark" aria-hidden="true">忆</span>拾忆碎笔</a>
-      <nav class="top-links" aria-label="网站导航"><span class="active-link">阅读卡片</span><a class="return" href="https://ki11yy.github.io/">返回博客 ↗</a></nav>
+      <nav class="top-links" aria-label="网站导航"><a href="https://ki11yy.github.io/">首页</a><a href="https://ki11yy.github.io/about/">关于</a><a href="https://ki11yy.github.io/tags/">标签</a><a href="https://ki11yy.github.io/categories/">分类</a><a href="https://ki11yy.github.io/archives/">归档</a><span class="active-link" aria-current="page">阅读卡片</span></nav>
     </header>
     <section class="hero" aria-labelledby="page-title">
       <div><p class="eyebrow">READING NOTES / 阅读的留白</p><h1 id="page-title">阅读卡片</h1><p class="hero-desc">把读过的书，留在日常里。<span>收集片刻共鸣，也留一扇重读的窗。</span></p><div class="stats"><span><strong id="book-total">0</strong>本书</span><span class="divider"></span><span><strong id="card-total">0</strong>段书摘</span></div></div>
