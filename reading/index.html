@@ -47,7 +47,7 @@ body{background:radial-gradient(ellipse at 20% 0,#eef9ff 0,transparent 55%),var(
 .share-options{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin:18px 0 14px;font-size:14px}.share-options select{padding:7px 10px;border:1px solid #bcd6e7;border-radius:7px;background:#fff;color:#344f63}.share-note-option{display:flex;gap:7px;align-items:center}.share-note-option input{accent-color:#3c6680;width:16px;height:16px}
 .share-preview-wrap{background:#e5eff5;border-radius:10px;padding:15px;text-align:center;max-height:52dvh;overflow:auto}.share-preview{display:block;width:100%;max-width:420px;height:auto;margin:auto;box-shadow:0 3px 14px #294c661a}.share-loading{font-size:15px;padding:30px;color:#637f92}
 .share-pages{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:12px;font-size:14px}.share-actions{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:10px;margin-top:15px}.share-hint{font-size:13px;line-height:1.7;color:#637f92;margin:13px 0 0}
-.share-shortcuts{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:15px}.share-help{background:#edf5fa;border:1px solid #c4dae8;border-radius:10px;padding:14px 16px;margin-top:14px;font-size:14px;line-height:1.8}.share-help h3{font-size:17px;font-weight:normal;margin:0 0 6px}.share-help p{margin:6px 0}.share-help-status{color:#365d77}.share-context-hint{margin:0;color:#668399;font-size:12px}
+.share-shortcuts{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:15px}.share-help{background:#edf5fa;border:1px solid #c4dae8;border-radius:10px;padding:14px 16px;margin-top:14px;font-size:14px;line-height:1.8}.share-help h3{font-size:17px;font-weight:normal;margin:0 0 6px}.share-help p{margin:6px 0}.share-help-status{color:#365d77}.share-status{margin:12px 0 0;border-radius:7px;padding:9px 12px;background:#e4f0f8;color:#345e78;font-size:14px;line-height:1.7}
 @media(max-width:650px){.share-inner{padding:18px}.share-heading h2{font-size:22px}.share-preview-wrap{padding:10px;max-height:47dvh}.share-actions .btn{flex:1}.share-actions #share-native{flex:1 0 100%}.card-bottom{align-items:flex-start}.share-dialog{max-height:calc(100dvh - 20px)}}
   </style>
 </head>
@@ -81,6 +81,7 @@ body{background:radial-gradient(ellipse at 20% 0,#eef9ff 0,transparent 55%),var(
       <div class="share-pages" id="share-pages" hidden><button class="btn" id="share-previous" type="button">上一张</button><span id="share-page-number" aria-live="polite"></span><button class="btn" id="share-next" type="button">下一张</button></div>
       <div class="share-actions"><button class="btn primary" id="share-native" type="button" disabled>分享卡片</button><button class="btn" id="share-copy" type="button" disabled>复制图片</button><button class="btn" id="share-download" type="button" disabled>保存图片</button></div>
       <p class="share-hint" id="share-hint">卡片生成后，即可分享或保存。</p>
+      <p class="share-status" id="share-status" role="status" aria-live="polite" hidden></p>
       <div class="share-shortcuts"><button class="link-button" id="share-help-toggle" type="button" aria-expanded="false" aria-controls="share-help">微信 / QQ 分享方法</button><button class="link-button" id="share-copy-link" type="button">复制卡片链接</button></div>
       <section class="share-help" id="share-help" aria-labelledby="share-help-title" hidden><h3 id="share-help-title">分享至微信、QQ</h3><p class="share-help-status" id="share-help-status" role="status"></p><p><strong>手机：</strong>点击“分享卡片”，在系统面板中选择微信或 QQ。如果没有这些选项，长按上方图片保存，再到聊天窗口从相册发送。</p><p><strong>电脑：</strong>点击“复制图片”，切换到微信或 QQ 聊天窗口，粘贴后发送；也可保存图片后拖入聊天窗口。</p><p>复制卡片链接发给朋友，对方打开即可看到这张书摘卡片。</p></section>
     </div>
@@ -124,7 +125,7 @@ body{background:radial-gradient(ellipse at 20% 0,#eef9ff 0,transparent 55%),var(
       }
       function renderChapters(){const options=[...new Set(cards.filter(c=>!book||bookKey(c)===book).map(c=>c.chapter))];$('chapter-filter').replaceChildren(new Option('全部章节',''));for(const label of options)$('chapter-filter').add(new Option(label,label));if(!options.includes(chapter))chapter='';$('chapter-filter').value=chapter;}
       function filtered(){const q=query.trim().toLocaleLowerCase();return cards.filter(c=>(!book||bookKey(c)===book)&&(!chapter||c.chapter===chapter)&&(!source||c.source===source)&&(!q||[c.text,c.book,c.author,c.chapter,c.collection,c.note].some(v=>v.toLocaleLowerCase().includes(q))));}
-      async function copy(value){try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(value);}else{const area=node('textarea');area.value=value;area.style.position='fixed';area.style.opacity='0';document.body.append(area);area.select();const ok=document.execCommand('copy');area.remove();if(!ok)throw new Error();}message('已复制');}catch{message('复制未成功，可以选中卡片文字后按 Ctrl+C。');}}
+      async function copy(value){try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(value);}else{const area=node('textarea');area.value=value;area.style.position='fixed';area.style.opacity='0';document.body.append(area);area.select();const ok=document.execCommand('copy');area.remove();if(!ok)throw new Error();}message('已复制');return true;}catch{message('复制未成功，可以选中卡片文字后按 Ctrl+C。');return false;}}
       function cardElement(c,index){
         const article=node('article','quote-card'+(manage&&!selected.has(c.id)?' unselected':''));article.id='card-'+encodeURIComponent(c.id);
         if(manage){const label=node('label','select-card');const input=document.createElement('input');input.type='checkbox';input.checked=selected.has(c.id);input.setAttribute('aria-label','发布选句：'+c.text.slice(0,25));input.addEventListener('change',()=>{if(input.checked)selected.add(c.id);else selected.delete(c.id);article.classList.toggle('unselected',!input.checked);persist();status();});label.append(input,document.createTextNode('加入公开页面'));article.append(label);}
@@ -212,7 +213,8 @@ body{background:radial-gradient(ellipse at 20% 0,#eef9ff 0,transparent 55%),var(
       function shareFilename(){const book=(shareCard.book||'书摘').replace(/[\\/:*?"<>|\u0000-\u001f]/g,'_').slice(0,50);return `${book}_书摘${sharePages.length>1?'_'+(sharePage+1):''}.png`;}
       function canCopyShareImage(){return !!(window.isSecureContext&&navigator.clipboard&&typeof navigator.clipboard.write==='function'&&typeof ClipboardItem==='function');}
       function canShareImage(file){try{return !!(typeof navigator.share==='function'&&navigator.canShare&&navigator.canShare({files:[file]}));}catch{return false;}}
-      function showShareHelp(status=''){ $('share-help').hidden=false;$('share-help-toggle').setAttribute('aria-expanded','true');$('share-help-toggle').textContent='收起分享方法';$('share-help-status').textContent=status; }
+      function shareMessage(value){$('share-status').textContent=value;$('share-status').hidden=!value;}
+      function showShareHelp(status=''){ $('share-help').hidden=false;$('share-help-toggle').setAttribute('aria-expanded','true');$('share-help-toggle').textContent='收起分享方法';$('share-help-status').textContent=status;if(status)shareMessage(status); }
       function shareCardLink(){return 'https://ki11yy.github.io/reading/#share-card-'+encodeURIComponent(shareCard.id);}
       function setShareBusy(){shareBlob=null;$('share-download').disabled=true;$('share-native').disabled=true;$('share-copy').disabled=true;$('share-previous').disabled=true;$('share-next').disabled=true;$('share-preview').hidden=true;$('share-loading').hidden=false;$('share-loading').textContent='正在生成卡片…';}
       async function renderShare(){
@@ -237,17 +239,17 @@ body{background:radial-gradient(ellipse at 20% 0,#eef9ff 0,transparent 55%),var(
           if(version!==shareVersion||!$('share-dialog').open)return;sharePages=prepareSharePages(shareCard,$('share-note').checked);sharePage=0;await renderShare();
         }catch(error){if(version===shareVersion)$('share-loading').textContent=error.message||'卡片生成失败，请重试。';}
       }
-      function openShare(card){shareCard=card;sharePages=[];shareTrigger=document.activeElement;$('share-note').checked=false;$('share-note-option').hidden=!card.note;$('share-pages').hidden=true;$('share-help').hidden=true;$('share-help-toggle').setAttribute('aria-expanded','false');$('share-help-toggle').textContent='微信 / QQ 分享方法';$('share-help-status').textContent='';$('share-dialog').showModal();document.body.style.overflow='hidden';refreshShare();}
+      function openShare(card){shareCard=card;sharePages=[];if(!$('share-dialog').open)shareTrigger=document.activeElement;shareMessage('');$('share-note').checked=false;$('share-note-option').hidden=!card.note;$('share-pages').hidden=true;$('share-help').hidden=true;$('share-help-toggle').setAttribute('aria-expanded','false');$('share-help-toggle').textContent='微信 / QQ 分享方法';$('share-help-status').textContent='';if(!$('share-dialog').open)$('share-dialog').showModal();document.body.style.overflow='hidden';refreshShare();}
       $('share-close').addEventListener('click',()=>$('share-dialog').close());
       $('share-dialog').addEventListener('close',()=>{++shareVersion;shareBlob=null;if(shareURL)URL.revokeObjectURL(shareURL);shareURL='';$('share-preview').removeAttribute('src');document.body.style.overflow='';if(shareTrigger&&shareTrigger.isConnected)shareTrigger.focus();});
       $('share-dialog').addEventListener('click',event=>{if(event.target===$('share-dialog')){const rect=event.target.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)event.target.close();}});
       $('share-theme').addEventListener('change',()=>{if(sharePages.length)renderShare();});$('share-note').addEventListener('change',refreshShare);
       $('share-previous').addEventListener('click',()=>{if(sharePage>0){--sharePage;renderShare();}});$('share-next').addEventListener('click',()=>{if(sharePage<sharePages.length-1){++sharePage;renderShare();}});
-      $('share-download').addEventListener('click',()=>{if(shareBlob){download(shareBlob,shareFilename(),'image/png');message('图片已保存，可以在微信、QQ 聊天窗口里发送。若手机未下载，可长按图片保存。');}});
-      $('share-native').addEventListener('click',async()=>{if(!shareBlob)return;const file=new File([shareBlob],shareFilename(),{type:'image/png'});if(!canShareImage(file)){showShareHelp('当前浏览器无法调起图片分享。请复制或保存这张卡片，再在微信、QQ 中发送。');return;}$('share-native').disabled=true;try{await navigator.share({title:`《${shareCard.book}》书摘`,files:[file]});}catch(error){if(error.name!=='AbortError')showShareHelp('未能打开图片分享。可以复制图片，或保存到相册后发送。');}finally{$('share-native').disabled=!shareBlob;}});
-      $('share-copy').addEventListener('click',async()=>{if(!shareBlob)return;try{await navigator.clipboard.write([new ClipboardItem({'image/png':shareBlob})]);message('图片已复制，切换到微信、QQ 聊天窗口，粘贴后即可发送。');}catch{showShareHelp('浏览器未能复制图片。请保存这张卡片，再在微信、QQ 中发送。');}});
+      $('share-download').addEventListener('click',()=>{if(shareBlob){download(shareBlob,shareFilename(),'image/png');shareMessage('图片已开始下载，可以在微信、QQ 聊天窗口里发送。若手机未下载，可长按图片保存。');}});
+      $('share-native').addEventListener('click',async()=>{if(!shareBlob)return;shareMessage('');const file=new File([shareBlob],shareFilename(),{type:'image/png'});if(!canShareImage(file)){showShareHelp('当前浏览器无法调起图片分享。请复制或保存这张卡片，再在微信、QQ 中发送。');return;}$('share-native').disabled=true;try{await navigator.share({title:`《${shareCard.book}》书摘`,files:[file]});shareMessage('卡片已交给系统分享，请在所选应用中完成发送。');}catch(error){if(error.name==='AbortError')shareMessage('已取消分享，卡片仍可复制或保存。');else showShareHelp('未能打开图片分享。可以复制图片，或保存到相册后发送。');}finally{$('share-native').disabled=!shareBlob;}});
+      $('share-copy').addEventListener('click',async()=>{if(!shareBlob)return;try{await navigator.clipboard.write([new ClipboardItem({'image/png':shareBlob})]);shareMessage('图片已复制，切换到微信、QQ 聊天窗口，粘贴后即可发送。');}catch{showShareHelp('浏览器未能复制图片。请保存这张卡片，再在微信、QQ 中发送。');}});
       $('share-help-toggle').addEventListener('click',()=>{if($('share-help').hidden)showShareHelp();else{$('share-help').hidden=true;$('share-help-toggle').setAttribute('aria-expanded','false');$('share-help-toggle').textContent='微信 / QQ 分享方法';}});
-      $('share-copy-link').addEventListener('click',()=>copy(shareCardLink()));
+      $('share-copy-link').addEventListener('click',async()=>{const copied=await copy(shareCardLink());shareMessage(copied?'卡片链接已复制，发给朋友后，对方打开即可看到这张书摘。':'链接未能复制，请先保存图片后分享。');});
       function safeJSON(data){return JSON.stringify(data).replace(/</g,'\\u003c').replace(/>/g,'\\u003e').replace(/&/g,'\\u0026').replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029');}
       function publicHTML(chosen){
         const doc=new DOMParser().parseFromString(template,'text/html');
@@ -268,7 +270,8 @@ body{background:radial-gradient(ellipse at 20% 0,#eef9ff 0,transparent 55%),var(
       if(embedded.mode==='demo')$('demo-notice').hidden=false;
       renderAll();
       if(location.hash.startsWith('#card-')){const id=location.hash.slice(6);const i=cards.findIndex(c=>encodeURIComponent(c.id)===id);if(i>=0){limit=Math.max(limit,i+1);render();requestAnimationFrame(()=>document.getElementById('card-'+id)?.scrollIntoView({block:'center'}));}}
-      if(location.hash.startsWith('#share-card-')){const id=location.hash.slice(12),card=cards.find(c=>encodeURIComponent(c.id)===id);if(card)openShare(card);else message('这张卡片已不在当前公开收藏中。');}
+      function openLinkedCard(){if(!location.hash.startsWith('#share-card-'))return;const id=location.hash.slice(12),card=cards.find(c=>encodeURIComponent(c.id)===id);if(card){if(!$('share-dialog').open||shareCard.id!==card.id)openShare(card);}else message('这张卡片已不在当前公开收藏中。');}
+      window.addEventListener('hashchange',openLinkedCard);openLinkedCard();
     })();
   </script>
 </body>
